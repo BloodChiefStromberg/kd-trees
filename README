@@ -1,0 +1,80 @@
+This is a simple program whose job it is is to read in a table, sort it a few
+different ways, and then accept queries over the data in the table.
+
+To use the program, it must first be compiled by simply running 'make'. This
+will compile the file 'main.f' into an executable file called 'fortran'. Run
+this file by calling './fortran' to start the program.
+
+The first thing the program will expect is the number of rows, a number between
+1 and 1000. Next, it will expect a number of rows equal to the number you
+entered. A row is defined as three alphanumeric terms, seperated by 1 or more
+spaces. A row is constrained to an arbitrary 50 character length that may be
+modified in the source code. Each row is seperated with a new line character.
+Rows are expected to be well-formed.
+
+The program will display the table as it has been read in, then sort it both
+by name and location, outputting those results as well. Now, it will wait for
+another number, the number of queries. A query is a single word, and each query
+is seperated by a newline character. These are also constrained to a length of
+50 characters. The program will search the table over all fields (defined in the
+spec to be name, color, and location). If it finds the term, it will output the
+corresponding row. If it does not find the term, it will say that it could not
+find the term.
+
+TEST DATA
+To run the test data, execute the program, and then copy and paste the table
+into the program prompt. After it sorts, do the same thing with the queries.
+
+DATA
+Table:
+3
+Sam     blue Louisville
+aaron  silver Kentucky
+skywalker green      moon
+
+The output of this table should be:
+-------------
+Sam blue Louisville  
+aaron silver Kentucky  
+skywalker green moon  
+  
+ SORTED BY NAMES
+Sam blue Louisville  
+aaron silver Kentucky  
+skywalker green moon  
+  
+ SORTED BY LOCATION
+aaron silver Kentucky  
+Sam blue Louisville  
+skywalker green moon
+----------------
+Note that captilized words occur alphanumerically before lowercase words.
+Alos notice that the number of spaces sperating the words is irrelevant. The 
+program will now expect the number of queries, and then some queries. Try these:
+8
+Aaron
+Sam
+moon
+Alderaan
+aaron is a good programmer
+give him a good grade
+skywalker
+silver
+
+The output will be:
+No match for 
+Aaron  
+Sam blue Louisville  
+skywalker green moon  
+No match for 
+Alderaan  
+aaron silver Kentucky  
+No match for 
+give  
+skywalker green moon  
+aaron silver Kentucky
+
+Note that case matters in the queries. Also, in multi-word queries, only the
+first word is used. This because it's impossible to have multiword elements
+in the table. When a match is found, the row corresponding to that query is
+ouput.
